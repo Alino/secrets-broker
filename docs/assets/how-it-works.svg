@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-labelledby="hw-title hw-desc">
+  <title id="hw-title">How secrets-broker works</title>
+  <desc id="hw-desc">The agent sends a secret reference and an argv to the broker. The broker checks policy (exact executable and argv) and optional Touch ID approval; only then does it resolve the value from the vault and place it in the child process's environment, optionally with no network. The child's raw output is masked before it returns to the agent, and every decision is written to an audit log without values. Secret values never cross into the agent's side.</desc>
+  <style>
+    .m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+    .b{font-weight:700}
+    .tx{fill:#E6EDF3}.mu{fill:#A3B1C2}.di{fill:#8291A3}
+    .mi{fill:#5EEAD4}.am{fill:#FFB547}.co{fill:#FF6B6B}
+    .cap{letter-spacing:2.5px}
+    .flow{stroke-dasharray:8 6;animation:flow 1.4s linear infinite}
+    @keyframes flow{to{stroke-dashoffset:-28}}
+    @media (prefers-reduced-motion:reduce){.flow{animation:none}}
+  </style>
+  <defs>
+    <clipPath id="hw-clip"><rect x="0" y="0" width="1200" height="600" rx="24"/></clipPath>
+    <pattern id="hw-dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#1E2935"/>
+    </pattern>
+    <marker id="hw-ah-m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#5EEAD4"/>
+    </marker>
+    <marker id="hw-ah-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#FFB547"/>
+    </marker>
+    <marker id="hw-ah-d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#8291A3"/>
+    </marker>
+    <linearGradient id="hw-tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1D2733"/>
+      <stop offset="1" stop-color="#0B0F14"/>
+    </linearGradient>
+    <linearGradient id="hw-amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD27A"/>
+      <stop offset="1" stop-color="#FF8B3D"/>
+    </linearGradient>
+    <linearGradient id="hw-amber-h" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFD27A"/>
+      <stop offset="1" stop-color="#FF8B3D"/>
+    </linearGradient>
+    <linearGradient id="hw-mint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7DF5E2"/>
+      <stop offset="1" stop-color="#22C3AE"/>
+    </linearGradient>
+    <linearGradient id="hw-band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2DD4BF"/>
+      <stop offset="0.5" stop-color="#6EF0DC"/>
+      <stop offset="1" stop-color="#2DD4BF"/>
+    </linearGradient>
+    <filter id="hw-glow" x="-30%" y="-150%" width="160%" height="400%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- backdrop -->
+  <g clip-path="url(#hw-clip)">
+    <rect width="1200" height="600" fill="#10161D"/>
+    <rect width="1200" height="600" fill="url(#hw-dots)"/>
+  </g>
+  <rect x="0.75" y="0.75" width="1198.5" height="598.5" rx="23.25" fill="none" stroke="#2A3746" stroke-width="1.5"/>
+
+  <!-- ===== agent's side ===== -->
+  <rect x="40" y="40" width="320" height="440" rx="20" fill="#2DD4BF" fill-opacity="0.05" stroke="#2DD4BF" stroke-opacity="0.3"/>
+  <text x="60" y="72" class="m mi cap" font-size="13">AGENT'S VIEW</text>
+
+  <!-- blindfolded agent -->
+  <line x1="200" y1="90" x2="200" y2="104" stroke="#2A3746" stroke-width="3"/>
+  <circle cx="200" cy="86" r="6" fill="#5EEAD4"/>
+  <rect x="142" y="136" width="10" height="24" rx="3" fill="#263241"/>
+  <rect x="248" y="136" width="10" height="24" rx="3" fill="#263241"/>
+  <rect x="150" y="104" width="100" height="86" rx="26" fill="#1A2430" stroke="#33445A" stroke-width="2"/>
+  <path d="M258 146L274 168L266 171Z M252 150L258 176L250 175Z" fill="#2DD4BF"/>
+  <path d="M136 130Q200 118 264 130L264 152Q200 140 136 152Z" fill="url(#hw-band)"/>
+  <g fill="#0B1117">
+    <circle cx="172" cy="136.2" r="3.2"/><circle cx="186" cy="135.3" r="3.2"/><circle cx="200" cy="135" r="3.2"/>
+    <circle cx="214" cy="135.3" r="3.2"/><circle cx="228" cy="136.2" r="3.2"/>
+  </g>
+  <path d="M186 171Q200 180 214 171" fill="none" stroke="#A3B1C2" stroke-width="3" stroke-linecap="round"/>
+  <text x="200" y="222" text-anchor="middle" class="m tx b" font-size="18">LLM agent</text>
+  <text x="200" y="243" text-anchor="middle" class="m di" font-size="14">talks MCP</text>
+
+  <text x="60" y="280" class="m di cap" font-size="13">SEES ONLY</text>
+  <g class="m" font-size="14">
+    <rect x="60" y="292" width="280" height="32" rx="8" fill="#0B1015" stroke="#263241"/>
+    <text x="76" y="313" class="mi">sec://keepass/GitHub/token</text>
+    <rect x="60" y="334" width="280" height="32" rx="8" fill="#0B1015" stroke="#263241"/>
+    <text x="76" y="355"><tspan class="mu">GH_TOKEN=</tspan><tspan class="am">&lt;concealed&gt;</tspan></text>
+    <rect x="60" y="376" width="280" height="32" rx="8" fill="#0B1015" stroke="#263241"/>
+    <text x="76" y="397"><tspan class="mi">✓ allowed</tspan><tspan class="di">  ·  </tspan><tspan class="co">✗ DENIED</tspan></text>
+  </g>
+  <text x="60" y="440" class="m di" font-size="14">no get_secret tool —</text>
+  <text x="60" y="460" class="m di" font-size="14">not even a confirmation-gated one</text>
+
+  <!-- ===== the line values never cross ===== -->
+  <line x1="420" y1="48" x2="420" y2="492" stroke="#FFB547" stroke-opacity="0.6" stroke-width="1.5" stroke-dasharray="4 6"/>
+  <text x="420" y="512" text-anchor="middle" class="m am" font-size="14">secret values never cross this line</text>
+
+  <!-- ===== broker ===== -->
+  <rect x="480" y="40" width="320" height="440" rx="20" fill="#161E28" stroke="#33445A" stroke-width="1.5"/>
+  <g transform="translate(500 56) scale(0.164)">
+    <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#hw-tile)"/>
+    <g transform="translate(128 129) scale(1.1) translate(-128 -129)">
+      <path d="M78 92L46 128L78 164" fill="none" stroke="url(#hw-mint)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M128 80a30 30 0 0 1 14.35 56.35l6.2 35.6a5.2 5.2 0 0 1-5.15 6.13h-30.8a5.2 5.2 0 0 1-5.15-6.13l6.2-35.6A30 30 0 0 1 128 80z" fill="url(#hw-amber)"/>
+      <path d="M178 92L210 128L178 164" fill="none" stroke="url(#hw-mint)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <rect x="8.75" y="8.75" width="238.5" height="238.5" rx="55.25" fill="none" stroke="#33445A" stroke-width="6"/>
+  </g>
+  <text x="556" y="80" class="m tx b" font-size="19">secrets-broker</text>
+  <text x="556" y="100" class="m di" font-size="13.5">MCP server · deny by default</text>
+
+  <g class="m">
+    <!-- 1 policy -->
+    <rect x="496" y="126" width="288" height="60" rx="12" fill="#0B1015" stroke="#263241"/>
+    <circle cx="520" cy="156" r="12" fill="none" stroke="#5EEAD4" stroke-width="1.5"/>
+    <text x="520" y="160.5" text-anchor="middle" class="mi b" font-size="13">1</text>
+    <text x="544" y="151" class="tx b" font-size="16">policy</text>
+    <text x="544" y="172" class="mu" font-size="14">exact exe + argv or DENIED</text>
+    <!-- 2 approve -->
+    <rect x="496" y="196" width="288" height="60" rx="12" fill="#0B1015" stroke="#263241"/>
+    <circle cx="520" cy="226" r="12" fill="none" stroke="#5EEAD4" stroke-width="1.5"/>
+    <text x="520" y="230.5" text-anchor="middle" class="mi b" font-size="13">2</text>
+    <text x="544" y="221"><tspan class="tx b" font-size="16">approve</tspan><tspan class="di" font-size="13"> · opt-in</tspan></text>
+    <text x="544" y="242" class="mu" font-size="14">Touch ID / Secure Enclave</text>
+    <!-- 3 jail -->
+    <rect x="496" y="266" width="288" height="60" rx="12" fill="#0B1015" stroke="#263241"/>
+    <circle cx="520" cy="296" r="12" fill="none" stroke="#5EEAD4" stroke-width="1.5"/>
+    <text x="520" y="300.5" text-anchor="middle" class="mi b" font-size="13">3</text>
+    <text x="544" y="291"><tspan class="tx b" font-size="16">jail</tspan><tspan class="di" font-size="13"> · opt-in</tspan></text>
+    <text x="544" y="312" class="mu" font-size="14">no network for local tools</text>
+    <!-- 4 mask -->
+    <rect x="496" y="336" width="288" height="60" rx="12" fill="#0B1015" stroke="#263241"/>
+    <circle cx="520" cy="366" r="12" fill="none" stroke="#5EEAD4" stroke-width="1.5"/>
+    <text x="520" y="370.5" text-anchor="middle" class="mi b" font-size="13">4</text>
+    <text x="544" y="361" class="tx b" font-size="16">mask</text>
+    <text x="544" y="382" class="mu" font-size="14">output → <tspan class="am">&lt;concealed&gt;</tspan></text>
+    <!-- 5 audit -->
+    <rect x="496" y="406" width="288" height="60" rx="12" fill="#0B1015" stroke="#263241"/>
+    <circle cx="520" cy="436" r="12" fill="none" stroke="#5EEAD4" stroke-width="1.5"/>
+    <text x="520" y="440.5" text-anchor="middle" class="mi b" font-size="13">5</text>
+    <text x="544" y="431" class="tx b" font-size="16">audit</text>
+    <text x="544" y="452" class="mu" font-size="14">verdicts only, never values</text>
+  </g>
+
+  <!-- ===== vault ===== -->
+  <path d="M900 70V206A130 20 0 0 0 1160 206V70Z" fill="#161E28" stroke="#FFB547" stroke-opacity="0.5" stroke-width="1.5"/>
+  <ellipse cx="1030" cy="70" rx="130" ry="20" fill="#1C2632" stroke="#FFB547" stroke-opacity="0.5" stroke-width="1.5"/>
+  <path d="M1030 96a9 9 0 0 1 4.3 16.9l1.9 10.6h-12.4l1.9-10.6A9 9 0 0 1 1030 96z" fill="#FFB547"/>
+  <text x="1030" y="152" text-anchor="middle" class="m tx b" font-size="19">vault</text>
+  <text x="1030" y="176" text-anchor="middle" class="m mu" font-size="13.5">KeePassXC</text>
+  <text x="1030" y="196" text-anchor="middle" class="m mu" font-size="13.5">Bitwarden · opvault</text>
+
+  <!-- ===== child process ===== -->
+  <rect x="900" y="258" width="260" height="190" rx="16" fill="#161E28" stroke="#33445A" stroke-width="1.5"/>
+  <text x="920" y="286" class="m di cap" font-size="13">CHILD PROCESS</text>
+  <text x="920" y="318" class="m tx" font-size="14">/usr/bin/gh release create</text>
+  <text x="920" y="352" class="m mu" font-size="14">GH_TOKEN=</text>
+  <rect x="1004" y="340" width="110" height="15" rx="4" fill="url(#hw-amber-h)" filter="url(#hw-glow)"/>
+  <text x="920" y="378" class="m di" font-size="13">the real value, only here</text>
+  <line x1="916" y1="394" x2="1144" y2="394" stroke="#263241"/>
+  <g fill="none" stroke="#FF6B6B" stroke-width="1.6">
+    <circle cx="926" cy="420" r="8"/>
+    <ellipse cx="926" cy="420" rx="3.5" ry="8"/>
+    <line x1="918" y1="420" x2="934" y2="420"/>
+    <line x1="916" y1="430" x2="936" y2="410" stroke-width="2.2"/>
+  </g>
+  <text x="944" y="425" class="m" font-size="14"><tspan class="co">network: none</tspan><tspan class="di"> (opt-in)</tspan></text>
+
+  <!-- ===== flows ===== -->
+  <!-- agent -> broker : ref + argv -->
+  <rect x="374" y="133" width="92" height="17" fill="#10161D"/>
+  <text x="420" y="146" text-anchor="middle" class="m mi" font-size="14">ref + argv</text>
+  <path class="flow" d="M362 156H476" stroke="#5EEAD4" stroke-width="2" fill="none" marker-end="url(#hw-ah-m)"/>
+  <!-- broker -> agent : masked output -->
+  <rect x="363" y="343" width="114" height="17" fill="#10161D"/>
+  <text x="420" y="356" text-anchor="middle" class="m mi" font-size="14">masked output</text>
+  <path class="flow" d="M478 366H364" stroke="#5EEAD4" stroke-width="2" fill="none" marker-end="url(#hw-ah-m)"/>
+  <!-- vault -> broker : value, resolved only after 1 + 2 pass -->
+  <text x="868" y="128" text-anchor="middle" class="m am" font-size="14">value</text>
+  <path class="flow" d="M898 140H862Q852 140 852 150V251Q852 261 842 261H804" stroke="#FFB547" stroke-width="2" fill="none" marker-end="url(#hw-ah-a)"/>
+  <!-- broker -> child : env only -->
+  <text x="850" y="288" text-anchor="middle" class="m am" font-size="14">env only</text>
+  <path class="flow" d="M802 298H896" stroke="#FFB547" stroke-width="2" fill="none" marker-end="url(#hw-ah-a)"/>
+  <!-- child -> broker : raw output -->
+  <text x="850" y="356" text-anchor="middle" class="m am" font-size="14">raw output</text>
+  <path class="flow" d="M898 366H804" stroke="#FFB547" stroke-width="2" fill="none" stroke-opacity="0.75" marker-end="url(#hw-ah-a)"/>
+  <!-- broker -> audit -->
+  <path class="flow" d="M640 482V522" stroke="#8291A3" stroke-width="2" fill="none" marker-end="url(#hw-ah-d)"/>
+
+  <!-- ===== audit strip ===== -->
+  <rect x="40" y="526" width="1120" height="50" rx="14" fill="#0B1015" stroke="#263241"/>
+  <text x="64" y="556" class="m" font-size="14"><tspan class="mu b">audit.jsonl</tspan><tspan class="di">  {"ref":"</tspan><tspan class="mi">sec://keepass/GitHub/token</tspan><tspan class="di">","exec":"/usr/bin/gh","allowed":true,…}</tspan></text>
+  <text x="1136" y="556" text-anchor="end" class="m am" font-size="14">no values, ever</text>
+</svg>

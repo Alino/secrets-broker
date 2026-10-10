@@ -1,0 +1,15 @@
+# binaries
+bin/
+
+# local env / policy
+.env
+policy.json
+*.sbtmp
+
+# OS
+.DS_Store
+
+# stray build artifacts
+/sb-browser-proxy
+/sb
+/secrets-broker-mcp

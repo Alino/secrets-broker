@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="lg-title">
+  <title id="lg-title">secrets-broker logo: a keyhole in angle brackets, the &lt;concealed&gt; placeholder where a secret would be</title>
+  <defs>
+    <linearGradient id="lg-tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1D2733"/>
+      <stop offset="1" stop-color="#0B0F14"/>
+    </linearGradient>
+    <linearGradient id="lg-amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD27A"/>
+      <stop offset="1" stop-color="#FF8B3D"/>
+    </linearGradient>
+    <linearGradient id="lg-mint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7DF5E2"/>
+      <stop offset="1" stop-color="#22C3AE"/>
+    </linearGradient>
+    <radialGradient id="lg-glow">
+      <stop offset="0" stop-color="#FF9F43" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#FF9F43" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="lg-tclip"><rect x="8" y="8" width="240" height="240" rx="56"/></clipPath>
+  </defs>
+
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#lg-tile)"/>
+  <g clip-path="url(#lg-tclip)"><circle cx="128" cy="124" r="96" fill="url(#lg-glow)"/></g>
+
+  <!-- mint = what the agent sees, amber = the secret: < keyhole > -->
+  <g transform="translate(128 129) scale(1.1) translate(-128 -129)">
+    <path d="M78 92L46 128L78 164" fill="none" stroke="url(#lg-mint)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M128 80a30 30 0 0 1 14.35 56.35l6.2 35.6a5.2 5.2 0 0 1-5.15 6.13h-30.8a5.2 5.2 0 0 1-5.15-6.13l6.2-35.6A30 30 0 0 1 128 80z" fill="url(#lg-amber)"/>
+    <path d="M178 92L210 128L178 164" fill="none" stroke="url(#lg-mint)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="8.75" y="8.75" width="238.5" height="238.5" rx="55.25" fill="none" stroke="#33445A" stroke-width="1.5"/>
+</svg>

